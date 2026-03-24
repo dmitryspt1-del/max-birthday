@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Максим · 26 · Зал славы цитат</title>
-    <!-- Шрифты: комикс-френдли и благородный для юриста -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -29,7 +28,6 @@
             padding: 20px;
         }
 
-        /* хедер */
         .hero {
             display: flex;
             flex-wrap: wrap;
@@ -131,7 +129,6 @@
             font-weight: bold;
         }
 
-        /* плеер */
         .player-section {
             padding: 80px 0;
             border-bottom: 3px dashed #ffd166;
@@ -220,7 +217,6 @@
             border-radius: 30px;
         }
 
-        /* фотоальбом */
         .album-section {
             padding: 80px 0;
             border-bottom: 3px dashed #ffd166;
@@ -266,7 +262,6 @@
             font-size: 0.9rem;
         }
 
-        /* НОВЫЙ БЛОК - ЗАЛ СЛАВЫ ЦИТАТ МАКСИМА */
         .quotes-section {
             padding: 80px 0;
             border-bottom: 3px dashed #ffd166;
@@ -334,7 +329,6 @@
             font-family: 'Space Mono', monospace;
         }
 
-        /* финальный блок с qr */
         .qr-footer {
             padding: 60px 0 40px;
             text-align: center;
@@ -384,448 +378,507 @@
                 font-size: 1.8rem;
                 flex-wrap: wrap;
             }
-            
             .quote-text {
                 font-size: 1.2rem;
             }
         }
+
+        /* flip card */
+        .flip-card {
+            background-color: transparent;
+            perspective: 1000px;
+            cursor: pointer;
+            height: auto;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-front, .flip-back {
+            position: relative;
+            width: 100%;
+            backface-visibility: hidden;
+            border-radius: 30px 8px 30px 8px;
+            background: #2d2d2d;
+            border: 2px solid #ffd166;
+            box-shadow: 8px 8px 0 #e03636;
+            padding: 15px 15px 20px;
+        }
+        .flip-front {
+            transform: rotateY(0deg);
+        }
+        .flip-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotateY(180deg);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .flip-back img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 20px 4px 20px 4px;
+            margin-bottom: 10px;
+        }
+        .flip-back p {
+            font-family: 'Space Mono', monospace;
+            text-align: center;
+            color: #b3a38a;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <!-- ГЛАВНЫЙ ЭКРАН с Максом и фактами -->
-        <div class="hero">
-            <div class="hero-left">
-                <div class="badge">⚡ 26 · ЮРИСТ · ФИЛОСОФ ⚡</div>
-                <h1>МАКСИМ <span class="highlight">XXVI</span></h1>
-                <div class="subhead">
-                    Человек, подаривший миру бессмертные цитаты, прославляющий комиксы и обожающий настолки. Юрист по профессии, мангака по призванию.
-                </div>
-                <div class="facts">
-                    <span class="fact">⚡ АВТОР ШЕДЕВРОВ</span>
-                    <span class="fact">❤️ МАШАРА</span>
-                    <span class="fact">🎂 10+ ЛЕТ ДРУЖБЫ</span>
-                </div>
-                <p style="font-size: 1.2rem;">Этот сайт — кусочек Вселенной. Тут плеер с сюрпризом, фото и твои великие цитаты.</p>
+<div class="wrapper">
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <div class="hero">
+        <div class="hero-left">
+            <div class="badge">⚡ 26 · ЮРИСТ · ФИЛОСОФ ⚡</div>
+            <h1>МАКСИМ <span class="highlight">XXVI</span></h1>
+            <div class="subhead">
+                Человек, подаривший миру бессмертные цитаты, прославляющий комиксы и обожающий настолки. Юрист по профессии, мангака по призванию.
             </div>
-            <div class="hero-right">
-                <div class="comic-frame">
-                    <img src="album/5244550918828060663.jpg">
+            <div class="facts">
+                <span class="fact">⚡ АВТОР ШЕДЕВРОВ</span>
+                <span class="fact">❤️ МАШАРА</span>
+                <span class="fact">🎂 10+ ЛЕТ ДРУЖБЫ</span>
+            </div>
+            <p style="font-size: 1.2rem;">Этот сайт — кусочек Вселенной. Тут плеер с сюрпризом, фото и твои великие цитаты.</p>
+        </div>
+        <div class="hero-right">
+            <div class="comic-frame">
+                <img src="album/5244550918828060663.jpg">
+                <div class="frame-caption">Максим в своей естественной среде обитания</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- АУДИОПЛЕЕР -->
+    <div class="player-section">
+        <div class="section-title">
+            <span>⚡ Эксклюзивный трек ⚡</span>
+            <div>Песня по мотивам жизни Макса</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;">
+            <div class="player-container" style="margin: 0;">
+                <div class="song-info">
+                    <div class="vinyl"></div>
+                    <div class="song-details">
+                        <h3>Space Adventure</h3>
+                        <p>слова, флоу, кусочек души: Дима</p>
+                    </div>
+                </div>
+                <audio controls style="width: 100%; margin-top: 20px;">
+                    <source src="album/Space_Race.mp3" type="audio/mpeg">
+                    <source src="album/Space_Race (online-audio-converter.com).m4a" type="audio/mp4">
+                    <source src="album/Space_Race (online-audio-converter.com).ogg" type="audio/ogg">
+                    <source src="album/Space_Race (online-audio-converter.com).acc" type="audio/acc">
+                    Твой браузер не тянет аудио — но ты и так знаешь, что там шедевр
+                </audio>
+            </div>
+            <div style="position: relative; background: #f0e9d8; border-radius: 40px 40px 40px 10px; padding: 30px; border: 4px solid #ffd166; box-shadow: 15px 15px 0 #e03636; transform: rotate(1deg);">
+                <div style="position: absolute; bottom: -20px; left: 50px; width: 30px; height: 30px; background: #f0e9d8; border-right: 4px solid #ffd166; border-bottom: 4px solid #ffd166; transform: rotate(45deg); box-shadow: 10px 10px 0 #e03636;"></div>
+                <p style="font-family: 'Space Mono', monospace; color: #e03636; font-size: 1rem; margin-bottom: 20px; text-transform: uppercase;">⚡ Lyrics ⚡</p>
+                <div style="font-family: 'Comic Neue', cursive; color: #1a1a1a; font-size: 1.1rem; line-height: 1.6; white-space: pre-line; max-height: 300px; overflow-y: auto; padding-right: 15px;" flex-grow: 1; max-height: 280px;>
+                    Интро:
+                    Эй! Эй, брат! Я приглашаю тебя
+                    В космическое путешествие.
+                    Ну что ж,
+                    Полетели!
+                                                                       
+                    Припев х2:
+                    Потерял опору под ногами,
+                    Ищет быстро
+                    Четырьмя глазами
+                    Бумагу, ручку, карандаш.
+                    В пустоте через звезды
+                    Нарисует Млечный путь
+                    На новый этаж.
                     
-                    <div class="frame-caption">Максим в своей естественной среде обитания</div>
+                    Куплет 1:
+                    Огибаем первую планету,
+                    Планету детства,
+                    Ты не можешь сам еще одеться.
+                    Мамины руки нежно обнимают,
+                    А папины в ковбоя наряжают.
+                    Через пару зим
+                    Осознает Максим
+                    Что в обнимку с ним
+                    Альбом лежит
+                    И кисти торчат из волос
+                    Наш мальчик немного подрос
+                    Да ладно, эээй!
+
+                    Куплет 2:
+                    Я врубаю экстра-скорость, брат,
+                    У нас не так много времени,
+                    Сейчас будет очень быстро.
+                    Помнишь эту планету?
+                    Там машет Самсоник - это колледж, эээй!
+                    Но это же планета-спутник,
+                    Рядом кое-что побольше -
+                    Планета-универ.
+                    Посмотри: над ней развивается флаг из голубой футболки БГУ!
+                    Быстренько надо вкинуть пару знакомых слов из этой галактики: Fanta black mystery, голубая луна, сундук в лесу...
+                    Я НЕ УСПЕВАЮ НА ПРИПЕВ!
+
+                    Припев х2:
+                    Потерял опору под ногами,
+                    Ищет быстро
+                    Четырьмя глазами
+                    Бумагу, ручку, карандаш.
+                    В пустоте через звезды
+                    Нарисует Млечный путь
+                    На новый этаж.
+
+                    Куплет 3:
+                    Ну а сейчас я пожалуй отлучусь
+                    В герметичном костюме на Землю умчусь.
+                    И всё для того,
+                    Чтоб не так кипела кровь
+                    При посадке на планету Любовь.
+                    Ведь там тебя кое-кто ждёт,
+                    Уже скучает,
+                    Свесив с орбиты ногами качает.
+                    Чего же еще пожелать...
+                    Афора бы начать рисовать...
+
+                    Аутро:
+                    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26.
+                    С днём рожденья, Максим!
+                </div>
+                <div style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: #b3a38a; font-family: 'Space Mono', monospace;">
+                    ↓ прокрути вниз ↓
                 </div>
             </div>
         </div>
-
-        <!-- АУДИОПЛЕЕР с песней и текстом -->
-<div class="player-section">
-    <div class="section-title">
-        <span>⚡ Эксклюзивный трек ⚡</span>
-        <div>Песня по мотивам жизни Макса</div>
+        <p style="margin-top: 20px; font-style: italic; opacity: 0.7; text-align: center;"></p>
     </div>
-    
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center;">
-        <!-- ЛЕВАЯ ЧАСТЬ: ПЛЕЕР -->
-        <div class="player-container" style="margin: 0;">
-            <div class="song-info">
-                <div class="vinyl"></div>
-                <div class="song-details">
-                    <h3>Space Adventure</h3>
-                    <p>слова, флоу, кусочек души: Дима</p>
-                </div>
-            </div>
-            <audio controls style="width: 100%; margin-top: 20px;">
-                <source src="album/Space_Race.mp3" type="audio/mpeg">
-                <source src="album/Space_Race (online-audio-converter.com).m4a" type="audio/mp4">
-                <source src="album/Space_Race (online-audio-converter.com).ogg" type="audio/ogg">
-                <source src="album/Space_Race (online-audio-converter.com).acc" type="audio/acc">
-                Твой браузер не тянет аудио — но ты и так знаешь, что там шедевр
-            </audio>
+
+    <!-- АЛЬБОМ ФОТО -->
+    <div class="album-section">
+        <div class="section-title">
+            <span>📸 Альбом</span>
+            <div>Желаю тебе:</div>
         </div>
-        
-        <!-- ПРАВАЯ ЧАСТЬ: КОМИКСНОЕ ОБЛАКО С ТЕКСТОМ ПЕСНИ -->
-        <div style="position: relative; background: #f0e9d8; border-radius: 40px 40px 40px 10px; padding: 30px; border: 4px solid #ffd166; box-shadow: 15px 15px 0 #e03636; transform: rotate(1deg);">
-            <!-- Хвостик облачка (как в комиксах) -->
-            <div style="position: absolute; bottom: -20px; left: 50px; width: 30px; height: 30px; background: #f0e9d8; border-right: 4px solid #ffd166; border-bottom: 4px solid #ffd166; transform: rotate(45deg); box-shadow: 10px 10px 0 #e03636;"></div>
-            
-            <!-- Заголовок -->
-            <p style="font-family: 'Space Mono', monospace; color: #e03636; font-size: 1rem; margin-bottom: 20px; text-transform: uppercase;">⚡ Lyrics ⚡</p>
-            
-            <!-- ТЕКСТ ПЕСНИ С ПРОКРУТКОЙ -->
-            <div style="font-family: 'Comic Neue', cursive; color: #1a1a1a; font-size: 1.1rem; line-height: 1.6; white-space: pre-line; max-height: 300px; overflow-y: auto; padding-right: 15px;" flex-grow: 1; max-height: 280px;>
-                Интро:
-                Эй! Эй, брат! Я приглашаю тебя
-                В космическое путешествие.
-                Ну что ж,
-                Полетели!
-                                               
-                Припев х2:
-                Потерял опору под ногами,
-                Ищет быстро
-                Четырьмя глазами
-                Бумагу, ручку, карандаш.
-                В пустоте через звезды
-                Нарисует Млечный путь
-                На новый этаж.
-                
-                Куплет 1:
-                Огибаем первую планету,
-                Планету детства,
-                Ты не можешь сам еще одеться.
-                Мамины руки нежно обнимают,
-                А папины в ковбоя наряжают.
-                Через пару зим
-                Осознает Максим
-                Что в обнимку с ним
-                Альбом лежит
-                И кисти торчат из волос
-                Наш мальчик немного подрос
-                Да ладно, эээй!
-
-                Куплет 2:
-                Я врубаю экстра-скорость, брат,
-                У нас не так много времени,
-                Сейчас будет очень быстро.
-                Помнишь эту планету?
-                Там машет Самсоник - это колледж, эээй!
-                Но это же планета-спутник,
-                Рядом кое-что побольше -
-                Планета-универ.
-                Посмотри: над ней развивается флаг из голубой футболки БГУ!
-                Быстренько надо вкинуть пару знакомых слов из этой галактики: Fanta black mystery, голубая луна, сундук в лесу...
-                Я НЕ УСПЕВАЮ НА ПРИПЕВ!
-
-                Припев х2:
-                Потерял опору под ногами,
-                Ищет быстро
-                Четырьмя глазами
-                Бумагу, ручку, карандаш.
-                В пустоте через звезды
-                Нарисует Млечный путь
-                На новый этаж.
-
-                Куплет 3:
-                Ну а сейчас я пожалуй отлучусь
-                В герметичном костюме на Землю умчусь.
-                И всё для того,
-                Чтоб не так кипела кровь
-                При посадке на планету Любовь.
-                Ведь там тебя кое-кто ждёт,
-                Уже скучает,
-                Свесив с орбиты ногами качает.
-                Чего же еще пожелать...
-                Афора бы начать рисовать...
-
-                Аутро:
-                1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26.
-                С днём рожденья, Максим!
+        <div class="photo-grid">
+            <div class="photo-card">
+                <img src="album\5260280665322756436.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                <p>Больше вкусных борщей!</p>
             </div>
-            
-            <!-- Маленькая подсказка, что можно скроллить -->
-            <div style="text-align: center; margin-top: 10px; font-size: 0.8rem; color: #b3a38a; font-family: 'Space Mono', monospace;">
-                ↓ прокрути вниз ↓
+            <div class="photo-card">
+                <img src="album/5260280665322756433.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                <p>Любви пряной как глинтвейн!</p>
+            </div>
+            <div class="photo-card">
+                <img src="album/5260280665322756440.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                <p>Чтоб детство в жопе не переставало играть</p>
+            </div>
+            <div class="photo-card">
+                <img src="album/5260280665322756439.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                <p>Оставаться лавандовым рафом✨</p>
+            </div>
+            <div class="photo-card">
+                <img src="album/5260280665322756432.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                <p>Разрушать рамки! Рвать шаблоны!</p>
+            </div>
+            <div class="photo-card">
+                <img src="album/5260280665322756434.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                <p>Видеть во всём только хорошее!</p>
             </div>
         </div>
     </div>
-    
-    <p style="margin-top: 20px; font-style: italic; opacity: 0.7; text-align: center;"></p>
-</div>
 
-        <!-- АЛЬБОМ ФОТО (наши 10+ лет) -->
-        <div class="album-section">
-            <div class="section-title">
-                <span>📸 Альбом</span>
-                <div>Желаю тебе:</div>
+    <!-- ЦИТАТЫ -->
+    <div class="quotes-section">
+        <div class="section-title">
+            <span>🎙️ Зал славы</span>
+            <div>Бессмертные цитаты Максима</div>
+        </div>
+        <div class="quotes-grid">
+            <div class="quote-card">
+                <div class="quote-text">«Ты просто кринжа выкакал. Всё ок»</div>
+                <div class="quote-context">— сказано в утешение другу</div>
+                <div class="quote-number">01</div>
             </div>
-            <div class="photo-grid">
-                <!-- Сюда вставь свои фото -->
-                <div class="photo-card">
-                     <img src="album\5260280665322756436.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                     <p>Больше вкусных борщей!</p>
-                </div>
-                <div class="photo-card">
-                    <img src="album/5260280665322756433.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                    <p>Любви пряной как глинтвейн!</p>
-                </div>
-                <div class="photo-card">
-                	<img src="album/5260280665322756440.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;"> 
-               	    <p>Чтоб детство в жопе не переставало играть</p>
-                </div>
-                <div class="photo-card">
-                    <img src="album/5260280665322756439.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                    <p>Оставаться лавандовым рафом✨</p>
-                </div>
-                <div class="photo-card">
-                    <img src="album/5260280665322756432.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                    <p>Разрушать рамки! Рвать шаблоны!</p>
-                </div>
-                <div class="photo-card">
-                    <img src="album/5260280665322756434.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                    <p>Видеть во всём только хорошее!</p>
-                </div>
+            <div class="quote-card">
+                <div class="quote-text">«Швирэнь в дупци»</div>
+                <div class="quote-context">— от создателей "Будэ дупасыня"</div>
+                <div class="quote-number">02</div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-text">«От жопы отлегло?»</div>
+                <div class="quote-context">— проявление заботы</div>
+                <div class="quote-number">03</div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-text">«Ух, добру галдэху высрав»</div>
+                <div class="quote-context">— смесь украинского и эльфийского</div>
+                <div class="quote-number">04</div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-text">«Мега уирд но самтаймс фани»</div>
+                <div class="quote-context">— автопортрет одним предложением</div>
+                <div class="quote-number">05</div>
+            </div>
+            <div class="quote-card">
+                <div class="quote-text">«Димка друг король чичвагер»</div>
+                <div class="quote-context">— прямиком из подсознания</div>
+                <div class="quote-number">06</div>
             </div>
         </div>
-
-        <!-- БЛОК С ЦИТАТАМИ МАКСИМА (НОВАЯ ВЕРСИЯ) -->
-        <div class="quotes-section">
-            <div class="section-title">
-                <span>🎙️ Зал славы</span>
-                <div>Бессмертные цитаты Максима</div>
-            </div>
-            
-            <div class="quotes-grid">
-                <div class="quote-card">
-                    <div class="quote-text">«Ты просто кринжа выкакал. Всё ок»</div>
-                    <div class="quote-context">— сказано в утешение другу</div>
-                    <div class="quote-number">01</div>
-                </div>
-                
-                <div class="quote-card">
-                    <div class="quote-text">«Швирэнь в дупци»</div>
-                    <div class="quote-context">— от создателей "Будэ дупасыня"</div>
-                    <div class="quote-number">02</div>
-                </div>
-                
-                <div class="quote-card">
-                    <div class="quote-text">«От жопы отлегло?»</div>
-                    <div class="quote-context">— проявление заботы</div>
-                    <div class="quote-number">03</div>
-                </div>
-                
-                <div class="quote-card">
-                    <div class="quote-text">«Ух, добру галдэху высрав»</div>
-                    <div class="quote-context">— смесь украинского и эльфийского</div>
-                    <div class="quote-number">04</div>
-                </div>
-                
-                <div class="quote-card">
-                    <div class="quote-text">«Мега уирд но самтаймс фани»</div>
-                    <div class="quote-context">— автопортрет одним предложением</div>
-                    <div class="quote-number">05</div>
-                </div>
-                
-                <!-- Добавил бонусную цитату для ровного счёта -->
-                <div class="quote-card">
-                    <div class="quote-text">«Димка друг король чичвагер»</div>
-                    <div class="quote-context">— прямиком  из подсознания</div>
-                    <div class="quote-number">06</div>
-                </div>
-            </div>
-            
-            <p style="text-align: center; margin-top: 40px; font-style: italic; color: #ffd166;">И это только то, что я записал...</p>
-        </div>
-
-<!-- ВТОРАЯ ГАЛЕРЕЯ: АВТОМАТИЧЕСКАЯ КАРУСЕЛЬ -->
-<div style="padding: 60px 0; width: 100%;">
-    <div class="section-title" style="justify-content: center; margin-bottom: 30px;">
-        <span>🛍️ ВСЁ ЛУЧШЕЕ — МАКС</span>
+        <p style="text-align: center; margin-top: 40px; font-style: italic; color: #ffd166;">И это только то, что я записал...</p>
     </div>
-    
-    <!-- КАРУСЕЛЬ С АВТОПРОКРУТКОЙ -->
-    <div class="auto-carousel" style="overflow-x: auto; white-space: nowrap; padding: 20px 0; -webkit-overflow-scrolling: touch; scroll-behavior: smooth;">
-        
-        <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
-            <div class="photo-card">
-                <img src="album/5447183198069656606.jpg" style="text-align: center; width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">MAXWELL HOUSE</h3>
-                <p style="color: #b3a38a;">У тебя кофе есть? ЕССС!!!</p>
-            </div>
-        </div>
-        
-        <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
-            <div class="photo-card">
-                <img src="album/5447183198069656601.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">KINDER MAXI</h3>
-                <p style="color: #b3a38a;">Сынкууу</p>
-            </div>
-        </div>
-        
-        <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
-            <div class="photo-card">
-                <img src="album/5447183198069656602.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">COLGATE MAX FRESH</h3>
-                <p style="color: #b3a38a;">Лизать рот</p>
-            </div>
-        </div>
-        
-        <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
-            <div class="photo-card">
-                <img src="album/5447183198069656583.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">СМАК</h3>
-                <p style="color: #b3a38a;">Ням</p>
-            </div>
-        </div>
-        
-        <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
-            <div class="photo-card">
-                <img src="album/tA08YBepA0Y.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">MAXLINE</h3>
-                <p style="color: #b3a38a;">Казимир</p>
-            </div>
-        </div>
-        
-        <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
-            <div class="photo-card">
-                <img src="album/5447183198069656563.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">LAY'S MAX</h3>
-                <p style="color: #b3a38a;">More chips</p>
-            </div>
-        </div>
-        
-        <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
-            <div class="photo-card">
-                <img src="album/5447183198069656564.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">АНГРИМАКС</h3>
-                <p style="color: #b3a38a;">Злая дура</p>
-            </div>
-        </div>
-        
-        <!-- Дублируем первые карточки для плавности -->
-        <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
-            <div class="photo-card">
-                <img src="album/5447183198069656606.jpg" style="text-align: center; width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">MAXWELL HOUSE</h3>
-                <p style="color: #b3a38a;">У тебя кофе есть? ЕССС!!!</p>
-            </div>
-        </div>
-        
-        <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
-            <div class="photo-card">
-                <img src="album/5447183198069656601.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
-                <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">KINDER MAXI</h3>
-                <p style="color: #b3a38a;">Сынкууу</p>
-            </div>
-        </div>
-        
-    </div>
-    <!-- ТАЙМЕР ДО 27-ЛЕТИЯ (25 МАРТА 2027) -->
-<div style="text-align: center; margin: 50px 0 30px; padding: 20px; background: #2d2d2d; border-radius: 60px 20px 60px 20px; border: 3px solid #ffd166; box-shadow: 8px 8px 0 #e03636;">
-    <p style="font-family: 'Space Mono', monospace; color: #ffd166; font-size: 1.2rem; margin-bottom: 15px;">⏳ ДО 27-ЛЕТИЯ ОСТАЛОСЬ:</p>
-    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-        <div style="background: #1a1a1a; padding: 15px; border-radius: 20px; min-width: 80px;">
-            <span id="days" style="font-size: 2.5rem; font-family: 'Space Mono', monospace; color: #ffd166;">0</span>
-            <span style="display: block; font-size: 0.8rem; color: #b3a38a;">дней</span>
-        </div>
-        <div style="background: #1a1a1a; padding: 15px; border-radius: 20px; min-width: 80px;">
-            <span id="hours" style="font-size: 2.5rem; font-family: 'Space Mono', monospace; color: #ffd166;">0</span>
-            <span style="display: block; font-size: 0.8rem; color: #b3a38a;">часов</span>
-        </div>
-        <div style="background: #1a1a1a; padding: 15px; border-radius: 20px; min-width: 80px;">
-            <span id="minutes" style="font-size: 2.5rem; font-family: 'Space Mono', monospace; color: #ffd166;">0</span>
-            <span style="display: block; font-size: 0.8rem; color: #b3a38a;">минут</span>
-        </div>
-        <div style="background: #1a1a1a; padding: 15px; border-radius: 20px; min-width: 80px;">
-            <span id="seconds" style="font-size: 2.5rem; font-family: 'Space Mono', monospace; color: #ffd166;">0</span>
-            <span style="display: block; font-size: 0.8rem; color: #b3a38a;">секунд</span>
-        </div>
-    </div>
-</div>
 
-<script>
-    // Таймер до 27-летия (25 марта 2027)
-    function updateCountdown() {
-        const nextBirthday = new Date(2027, 2, 25, 0, 0, 0); // 2 = март
-        const today = new Date();
-        
-        const diff = nextBirthday - today;
-        
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-        
-        document.getElementById('days').textContent = days;
-        document.getElementById('hours').textContent = hours;
-        document.getElementById('minutes').textContent = minutes;
-        document.getElementById('seconds').textContent = seconds;
-    }
-    
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-</script>
-       
-    <!-- ПОДПИСЬ ОТ ДИМЫ (ТЕПЕРЬ ПО ЦЕНТРУ) -->
-    <div style="text-align: center; margin-top: 60px;">
-        <div class="signature">
-            С днюхой, брат! 🤜🤛 26 лет — только начало.
+    <!-- КАРУСЕЛЬ С FLIP-КАРТОЧКАМИ -->
+    <div style="padding: 60px 0; width: 100%;">
+        <div class="section-title" style="justify-content: center; margin-bottom: 30px;">
+            <span>🛍️ ВСЁ ЛУЧШЕЕ — МАКС</span>
         </div>
-        <div style="margin-top: 20px; font-size: 1.2rem;">
-            от Димы
+        <div class="auto-carousel" style="overflow-x: auto; white-space: nowrap; padding: 20px 0; -webkit-overflow-scrolling: touch; scroll-behavior: smooth;">
+            <!-- Карточка 1: Maxwell House -->
+            <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">
+                            <img src="album/5447183198069656606.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                            <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">MAXWELL HOUSE</h3>
+                            <p style="color: #b3a38a; text-align: center;">У тебя кофе есть? ЕССС!!!</p>
+                        </div>
+                        <div class="flip-back">
+                            <img src="album/coffemax.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px; margin-bottom:10px;" alt="back">
+                            <p>Только ты так можешь</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Карточка 2: Kinder Maxi -->
+            <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">
+                            <img src="album/5447183198069656601.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                            <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">KINDER MAXI</h3>
+                            <p style="color: #b3a38a; text-align: center;">Сынкууу</p>
+                        </div>
+                        <div class="flip-back">
+                            <img src="album/kidmax.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px; margin-bottom:10px;" alt="back">
+                            <p>Этот ковролин пережил так много</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Карточка 3: Colgate Max Fresh -->
+            <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">
+                            <img src="album/5447183198069656602.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                            <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">COLGATE MAX FRESH</h3>
+                            <p style="color: #b3a38a; text-align: center;">Лизать рот</p>
+                        </div>
+                        <div class="flip-back">
+                            <img src="album/mouth.gif" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px; margin-bottom:10px;" alt="back">
+                            <p>Тяжело смотреть на губы, которые...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Карточка 4: СМАК -->
+            <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">
+                            <img src="album/5447183198069656583.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                            <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">СМАК</h3>
+                            <p style="color: #b3a38a; text-align: center;">Ням</p>
+                        </div>
+                        <div class="flip-back">
+                            <img src="album/nyam.gif" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px; margin-bottom:10px;" alt="back">
+                            <p>Ляп-ляп-ляп!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Карточка 5: MAXLINE -->
+            <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">
+                            <img src="album/tA08YBepA0Y.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                            <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">MAXLINE</h3>
+                            <p style="color: #b3a38a; text-align: center;">Казимир</p>
+                        </div>
+                        <div class="flip-back">
+                            <img src="album/Kazimir.png" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px; margin-bottom:10px;" alt="back">
+                            <p>Когда-нибудь точно!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Карточка 6: LAY'S MAX -->
+            <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">
+                            <img src="album/5447183198069656563.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                            <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">LAY'S MAX</h3>
+                            <p style="color: #b3a38a; text-align: center;">More chips</p>
+                        </div>
+                        <div class="flip-back">
+                            <img src="album/morechips.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px; margin-bottom:10px;" alt="back">
+                            <p>So crunchy project</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Карточка 7: АНГРИМАКС -->
+            <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">
+                            <img src="album/5447183198069656564.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                            <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">АНГРИМАКС</h3>
+                            <p style="color: #b3a38a; text-align: center;">Злая дура</p>
+                        </div>
+                        <div class="flip-back">
+                            <img src="album/angrymax.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px; margin-bottom:10px;" alt="back">
+                            <p>Гау! Гау!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Дублируем первые две для плавности (как было в оригинале) -->
+            <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">
+                            <img src="album/5447183198069656606.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                            <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">MAXWELL HOUSE</h3>
+                            <p style="color: #b3a38a; text-align: center;">У тебя кофе есть? ЕССС!!!</p>
+                        </div>
+                        <div class="flip-back">
+                            <img src="album/coffemax.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px; margin-bottom:10px;" alt="back">
+                            <p>Только ты так можешь</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: inline-block; width: 260px; margin-right: 20px; white-space: normal;">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-front">
+                            <img src="album/5447183198069656601.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px;">
+                            <h3 style="text-align: center; font-family: 'Space Mono', monospace; color: #ffd166;">KINDER MAXI</h3>
+                            <p style="color: #b3a38a; text-align: center;">Сынкууу</p>
+                        </div>
+                        <div class="flip-back">
+                            <img src="album/kidmax.jpg" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px 4px 20px 4px; margin-bottom:10px;" alt="back">
+                            <p>Этот ковролин пережил так много</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<!-- СКРИПТ ДЛЯ АВТОПРОКРУТКИ -->
-<script>
-    // Запускаем когда страница загрузится
-    window.addEventListener('load', function() {
-        const carousel = document.querySelector('.auto-carousel');
-        if (!carousel) return;
-        
-        let scrollAmount = 0;
-        const step = 1; // скорость прокрутки (пикселей за кадр)
-        const delay = 30; // задержка между кадрами (мс)
-        let interval = setInterval(autoScroll, delay);
-        
-        function autoScroll() {
-            scrollAmount += step;
-            
-            // Если дошли до конца - плавно возвращаем в начало
-            if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
-                scrollAmount = 0;
-                carousel.scrollTo({
-                    left: 0,
-                    behavior: 'smooth'
-                });
-            } else {
-                carousel.scrollLeft = scrollAmount;
+        <!-- ТАЙМЕР -->
+        <div style="text-align: center; margin: 50px 0 30px; padding: 20px; background: #2d2d2d; border-radius: 60px 20px 60px 20px; border: 3px solid #ffd166; box-shadow: 8px 8px 0 #e03636;">
+            <p style="font-family: 'Space Mono', monospace; color: #ffd166; font-size: 1.2rem; margin-bottom: 15px;">⏳ ДО 27-ЛЕТИЯ ОСТАЛОСЬ:</p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <div style="background: #1a1a1a; padding: 15px; border-radius: 20px; min-width: 80px;">
+                    <span id="days" style="font-size: 2.5rem; font-family: 'Space Mono', monospace; color: #ffd166;">0</span>
+                    <span style="display: block; font-size: 0.8rem; color: #b3a38a;">дней</span>
+                </div>
+                <div style="background: #1a1a1a; padding: 15px; border-radius: 20px; min-width: 80px;">
+                    <span id="hours" style="font-size: 2.5rem; font-family: 'Space Mono', monospace; color: #ffd166;">0</span>
+                    <span style="display: block; font-size: 0.8rem; color: #b3a38a;">часов</span>
+                </div>
+                <div style="background: #1a1a1a; padding: 15px; border-radius: 20px; min-width: 80px;">
+                    <span id="minutes" style="font-size: 2.5rem; font-family: 'Space Mono', monospace; color: #ffd166;">0</span>
+                    <span style="display: block; font-size: 0.8rem; color: #b3a38a;">минут</span>
+                </div>
+                <div style="background: #1a1a1a; padding: 15px; border-radius: 20px; min-width: 80px;">
+                    <span id="seconds" style="font-size: 2.5rem; font-family: 'Space Mono', monospace; color: #ffd166;">0</span>
+                    <span style="display: block; font-size: 0.8rem; color: #b3a38a;">секунд</span>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function updateCountdown() {
+                const nextBirthday = new Date(2027, 2, 25, 0, 0, 0);
+                const today = new Date();
+                const diff = nextBirthday - today;
+                document.getElementById('days').textContent = Math.floor(diff / (1000 * 60 * 60 * 24));
+                document.getElementById('hours').textContent = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                document.getElementById('minutes').textContent = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('seconds').textContent = Math.floor((diff % (1000 * 60)) / 1000);
             }
-        }
-        
-        // Останавливаем когда наводим мышь
-        carousel.addEventListener('mouseenter', function() {
-            clearInterval(interval);
-        });
-        
-        // Запускаем снова когда уводим мышь
-        carousel.addEventListener('mouseleave', function() {
-            clearInterval(interval);
-            interval = setInterval(autoScroll, delay);
-        });
-        
-        // Для телефонов: останавливаем когда касаются
-        carousel.addEventListener('touchstart', function() {
-            clearInterval(interval);
-        });
-        
-        // Для телефонов: запускаем когда перестают касаться
-        carousel.addEventListener('touchend', function() {
-            clearInterval(interval);
-            interval = setInterval(autoScroll, delay);
-        });
-    });
-</script>
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        </script>
 
-    <!-- маленькая деталь: звёздочки-комиксы фоновые -->
+        <div style="text-align: center; margin-top: 60px;">
+            <div class="signature">
+                С днюхой, брат! 🤜🤛 26 лет — только начало.
+            </div>
+            <div style="margin-top: 20px; font-size: 1.2rem;">
+                от Димы
+            </div>
+        </div>
+    </div>
+
+    <!-- СКРИПТ АВТОПРОКРУТКИ -->
+    <script>
+        window.addEventListener('load', function() {
+            const carousel = document.querySelector('.auto-carousel');
+            if (!carousel) return;
+            let scrollAmount = 0;
+            const step = 1;
+            const delay = 30;
+            let interval = setInterval(autoScroll, delay);
+            function autoScroll() {
+                scrollAmount += step;
+                if (scrollAmount >= carousel.scrollWidth - carousel.clientWidth) {
+                    scrollAmount = 0;
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollLeft = scrollAmount;
+                }
+            }
+            carousel.addEventListener('mouseenter', () => clearInterval(interval));
+            carousel.addEventListener('mouseleave', () => {
+                clearInterval(interval);
+                interval = setInterval(autoScroll, delay);
+            });
+            carousel.addEventListener('touchstart', () => clearInterval(interval));
+            carousel.addEventListener('touchend', () => {
+                clearInterval(interval);
+                interval = setInterval(autoScroll, delay);
+            });
+        });
+    </script>
+
+    <!-- СКРИПТ ДЛЯ ПЕРЕВОРОТА КАРТОЧЕК -->
+    <script>
+        document.querySelectorAll('.flip-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.stopPropagation();   // чтобы не мешать автопрокрутке
+                card.classList.toggle('flipped');
+            });
+        });
+    </script>
+
     <div style="position: fixed; bottom: 20px; right: 20px; opacity: 0.1; font-size: 4rem; pointer-events: none;">⚡⚡⚡</div>
+</div>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
